@@ -1,6 +1,5 @@
 <?php
 session_start();
-define('REDIRECT_URL', 'http://ulmart.pr:3356/');
 ?>
 <html>
     <head>
