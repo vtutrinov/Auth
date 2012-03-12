@@ -1,5 +1,5 @@
 <?php
-
+define('REDIRECT_URL', 'http://ulmart.pr:3356/');
 /*
  * Abraham Williams (abraham@abrah.am) http://abrah.am
  *
