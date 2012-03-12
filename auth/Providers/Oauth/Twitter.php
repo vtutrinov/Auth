@@ -1,5 +1,4 @@
 <?php
-define('REDIRECT_URL', 'http://ulmart.pr:3356/');
 /*
  * Abraham Williams (abraham@abrah.am) http://abrah.am
  *
@@ -78,7 +77,7 @@ class Providers_Oauth_Twitter {
   }
 
   public function goToProvider() {
-      $request_token = $this->getRequestToken(REDIRECT_URL);
+      $request_token = $this->getRequestToken();
       $_SESSION['oauth_token'] = $request_token['oauth_token'];
       $_SESSION['oauth_token_secret'] = $request_token['oauth_token_secret'];
       $_SESSION['provider'] = 'twitter';
