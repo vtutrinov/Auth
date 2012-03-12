@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<provider>
+    <server value='http://www.facebook.com/dialog/oauth' name='Twitter' type='OAuth'>
+        <url_template value='{server}'></url_template>
+    </server>
+    <icon src='facebook.png'></icon>
+    <params>
+        <username required='0' default='username'></username>
+        <request_param name='client_id' value='f7QGVybvRlvdRK6kxg9cJA'></request_param>
+        <request_param name='redirect_uri' value='http://ulmart.pr:3356'></request_param>
+        <request_param name='scope' value='email, read_stream'></request_param>
+        <auth_param name='token_request_url' value='https://graph.facebook.com/oauth/access_token'></auth_param>
+        <auth_param name='consumer_key' alias='client_id' value='f7QGVybvRlvdRK6kxg9cJA'></auth_param>
+        <auth_param name='consumer_secret' alias='client_secret' value='vZ9x8XXMomZms0MqvVjMX2y1c2zshlupa4jwnLFGMR0'></auth_param>
+        <auth_param name='token_param_name' value='code'></auth_param>
+        <auth_param name='code' alias='code' value=':get:code'></auth_param>
+        <auth_param name='scope' alias='scope' value='offline_access'></auth_param>
+        <auth_param name='redirect' alias='redirect_uri' value='http://ulmart.pr:3356/'></auth_param>
+        <auth_param name='access_token_request_params' value='consumer_key,redirect,consumer_secret, scope,code'></auth_param>
+        <sparam name='debug' value='1'></sparam>
+        <sparam name='user_info_url' value='https://graph.facebook.com/me'></sparam>
+        <sparam name='user_token_alias' alias='access_token' value=''></sparam>
+    </params>
+</provider>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<provider>
+    <server value='openid.mail.ru/mail/' name='MAIL.RU' type='OpenID'>
+        <url_template value='{server}/{username}'></url_template>
+    </server>
+    <icon src='mail.ru.png'></icon>
+    <params>
+        <username required='1' default='username'></username>
+    </params>
+</provider>

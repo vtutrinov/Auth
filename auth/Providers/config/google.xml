@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<provider>
+    <server value="https://www.google.com/accounts/o8/id" name='Google' type='OpenID'>
+        <url_template value='{server}'></url_template>
+    </server>
+    <icon src="social-google-box-blue-icon.png"></icon>
+    <params>
+        <username required='0' default='username'></username>
+    </params>
+</provider>
