@@ -18,14 +18,29 @@ class Providers_Manager {
         $server = $xmlConfig ->getElementsByTagName('server');
         $ico = $xmlConfig->getElementsByTagName('icon');
         $configObject = new Providers_Config();
-        $providerUrl = self::getProviderUrl($xmlConfig);
-        $configObject->setServer($providerUrl);
-        $configObject->setUserNameRequired($xmlConfig);
-        $configObject->setRedirectUrl('ulmart.pr:3356/openid.php');
-        $configObject->setIconSrc("/auth/img/".$ico->item(0)->getAttribute('src'));
-        $configObject->setServiceName($server->item(0)->getAttribute('name'));
-        $configObject->setProtocol($server->item(0)->getAttribute('type'));
-        $configObject->setParams($xmlConfig -> getElementsByTagName('params'));
+        $type = $server->item(0)->getAttribute('type');
+        switch ($type) {
+            case 'OpenID':
+                $providerUrl = self::getProviderUrl($xmlConfig);
+                $configObject->setServer($providerUrl);
+                $configObject->setUserNameRequired($xmlConfig);
+                $configObject->setRedirectUrl(REDIRECT_URL);
+                $configObject->setIconSrc("/auth/img/".$ico->item(0)->getAttribute('src'));
+                $configObject->setServiceName($server->item(0)->getAttribute('name'));
+                $configObject->setProtocol($server->item(0)->getAttribute('type'));
+                $configObject->setParams($xmlConfig -> getElementsByTagName('params'));
+                break;
+            case 'OAuth':
+                $configObject->setIconSrc("/auth/img/".$ico->item(0)->getAttribute('src'));
+                $configObject->setServiceName($server->item(0)->getAttribute('name'));
+                $configObject->setProtocol($server->item(0)->getAttribute('type'));
+                $configObject->setRedirectUrl(REDIRECT_URL);
+                $consumerKeyNodes =  $xmlConfig ->getElementsByTagName('consumer_key');
+                $configObject->setConsumerKey($consumerKeyNodes->item(0)->getAttribute('value'));
+                $consumerSecretNodes = $xmlConfig ->getElementsByTagName('consumer_secret');
+                $configObject->setConsumerSecret($consumerSecretNodes->item(0)->getAttribute('value'));
+                break;
+        }
         return $configObject;
     }
 

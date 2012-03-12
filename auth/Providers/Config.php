@@ -13,6 +13,8 @@ class Providers_Config {
     protected $protocol = '';
     protected $params = array();
     protected $userNameRequired = false;
+    protected $consumerSecret = null;
+    protected $consumerKey = null;
 
     public function setServer($serverUrl) {
         $this -> openIdServer = $serverUrl;
@@ -81,6 +83,22 @@ class Providers_Config {
 
     public function getParam($paramName) {
         return $this -> params[$paramName];
+    }
+
+    public function setConsumerKey($key) {
+        $this -> consumerKey = $key;
+    }
+
+    public function getConsumerKey() {
+        return $this -> consumerKey;
+    }
+
+    public function setConsumerSecret($secret) {
+        $this -> consumerSecret = $secret;
+    }
+
+    public function getConsumerSecret() {
+        return $this -> consumerSecret;
     }
 
     public function __set($name, $value) {

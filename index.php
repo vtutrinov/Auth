@@ -1,6 +1,6 @@
 <?php
-//phpinfo();exit;
 session_start();
+define('REDIRECT_URL', 'http://ulmart.pr:3356/');
 ?>
 <html>
     <head>
@@ -12,15 +12,15 @@ session_start();
     </head>
     <body>
     <?php
-    var_dump($_SESSION);
     require_once 'auth/Loader.php';
     spl_autoload_register(array('Loader', 'autoload'));
-    Providers_Manager::initProvidersCollection(array('vk', 'facebook','yandex','google', 'mail'));
+    Providers_Manager::initProvidersCollection(array('vk', 'twitter', 'facebook','yandex','google', 'mail'));
     $itemCollection = Providers_Manager::getProvidersCollection();
     ?>
     <div id="auth">
         <?php
         foreach ($itemCollection as $key => $item) {
+//            var_dump($item);
             $popupClass = "";
             if ($item->isUserNameRequired()) {
                 $popupClass = 'class="userPopup"';
@@ -38,17 +38,17 @@ session_start();
             if (!$auth -> isAuthenticated()) {
                 $auth->goToProvider();
             } else {
-                echo 'User ' . ($auth->validate() ? $auth->identity . ' has ' : 'has not ') . 'logged in.';
+                //данные от OpenID провайдеров
                 var_dump($auth->getAttributes());
             }
         } elseif (isset($_SESSION['provider'])) {
             $provider = Providers_Manager::getConfig($_SESSION['provider']);
             $auth = Auth::getAuthGateway($provider);
+            $auth -> prepare($provider);
             if ($auth -> isAuthenticated()) {
+                //данные от OAuth провайдеров (Facebook, Twitter)
                 var_dump($auth -> getAttributes());
             }
-        } elseif (isset($_GET['oauth_token'])) {
-            header('Location: http://api.twitter.com/oauth/authorize?oauth_token='.$_GET['oauth_token']);
         }
     } catch (ErrorException $e) {
         echo "<span style='color:#f00;'>".$e->getMessage()."</span>";
