@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<provider>
+    <server name='Facebook' type='OAuth'></server>
+    <icon src='facebook.png'></icon>
+    <consumer_key value='223052157793566'></consumer_key>
+    <consumer_secret value='4046f0f5f1a7275424d1826d85c181ce'></consumer_secret>
+</provider>
